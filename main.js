@@ -46,6 +46,33 @@ function renderCards(category)
     });
 }
 
+function renderCardsSearch(event)
+{
+    event.preventDefault()
+
+    let container = document.getElementById("cards")
+    container.innerHTML = ""
+
+    let searchbar = document.getElementById("default-search")
+
+    getSearchData(searchbar.value).forEach(obj => {
+        console.log(obj);
+        
+        container.innerHTML += createCard(obj)
+    });
+}
+
+function getSearchData(search)
+{
+    return flowers.filter((e)=> 
+        {
+            var nev = e.nev.toLowerCase()
+            var leiras = e.leiras.toLowerCase()
+            var s = search.toLowerCase()
+            return nev.includes(s) || leiras.includes(s)
+        })
+}
+
 function createCard(card)
 {
     return `
